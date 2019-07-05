@@ -6,15 +6,20 @@ export class ProjectRepository extends BaseRepository<Project> {
     super('project');
   }
 
-  create(body: any) {
+  create(project: Project): Promise<Project> {
+    return this.insert(project);
   }
 
-  getAll() {
+  getAll(): Promise<Project[]> {
+    return this.query(`SELECT * from ${this.table}`);
   }
 
-  getById(id: number) {
+  getById(id: number): Promise<Project> {
+    return this.query(`SELECT * from ${this.table}`)
+      .then(r => r[0]);
   }
 
-  save(id: number) {
+  save(project: Project): Promise<Project> {
+    return this.update(project.id, project);
   }
 }
