@@ -1,14 +1,13 @@
 import * as mysql from 'mysql';
 import {Connection, MysqlError} from 'mysql';
 import {DATABASE_CREDENTIALS} from '../credentials';
+import {QueryUtil} from '../utils/query.util';
 
 export abstract class BaseRepository<T> {
   private connection: Connection;
 
   constructor(public table?: string) {
-    if () {
-      this.connection = mysql.createConnection(DATABASE_CREDENTIALS);
-    }
+    this.connection = mysql.createConnection(DATABASE_CREDENTIALS);
   }
 
   query(query: string): Promise<any> {
@@ -37,19 +36,21 @@ export abstract class BaseRepository<T> {
     });
   }
 
-  insert(object: T): string {
-    return '';
+  insert(object: T): Promise<T> {
+    const query = new QueryUtil(this.table).insert(object);
+    return this.query(query);
   }
 
-  update(object: T): string {
-    return '';
+  update(id: number, object: T): Promise<T> {
+    const query = new QueryUtil(this.table).update(id, object);
+    return this.query(query);
   }
 
-  abstract create(body: any);
+  abstract create(body: any): Promise<T>;
 
-  abstract getAll();
+  abstract getAll(): Promise<T[]>;
 
-  abstract getById(id: number);
+  abstract getById(id: number): Promise<T>;
 
-  abstract save(id: number);
+  abstract save(body: any): Promise<T>;
 }

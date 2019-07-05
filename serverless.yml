@@ -19,21 +19,21 @@ functions:
       - http:
           method: get
           path: project
-  projectGetWithId:
-    handler: src/lambda/handlers/project.getWithId
-    events:
-      - http:
-          method: get
-          path: project/{id}
   projectCreate:
     handler: src/lambda/handlers/project.create
     events:
       - http:
           method: post
-          path: project/{id}
+          path: project
   projectSave:
     handler: src/lambda/handlers/project.save
     events:
       - http:
           method: patch
+          path: project
+  projectGetWithId:
+    handler: src/lambda/handlers/project.getWithId
+    events:
+      - http:
+          method: get
           path: project/{id}
