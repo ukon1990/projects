@@ -1,0 +1,39 @@
+service:
+  name: project-backend
+  app: project-utils
+#tenant: your-tenant-name
+
+# Add the serverless-webpack plugin
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+functions:
+  projectGetAll:
+    handler: src/lambda/handlers/project.getAll
+    events:
+      - http:
+          method: get
+          path: project
+  projectGetWithId:
+    handler: src/lambda/handlers/project.getWithId
+    events:
+      - http:
+          method: get
+          path: project/{id}
+  projectCreate:
+    handler: src/lambda/handlers/project.create
+    events:
+      - http:
+          method: post
+          path: project/{id}
+  projectSave:
+    handler: src/lambda/handlers/project.save
+    events:
+      - http:
+          method: patch
+          path: project/{id}
