@@ -1,6 +1,7 @@
-import {BaseRepository, RepositoryTemplate} from './base.repository';
+import {BaseRepository} from './base.repository';
+import {Project} from '../../models/project.model';
 
-export class ProjectRepository extends BaseRepository implements RepositoryTemplate {
+export class ProjectRepository extends BaseRepository<Project> {
   constructor() {
     super('project');
   }
