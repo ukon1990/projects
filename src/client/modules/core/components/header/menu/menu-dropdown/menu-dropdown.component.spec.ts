@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MenuDropdownComponent } from './menu-dropdown.component';
+import {MatButtonModule, MatGridListModule, MatMenuModule} from '@angular/material';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('MenuDropdownComponent', () => {
   let component: MenuDropdownComponent;
@@ -8,7 +10,12 @@ describe('MenuDropdownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MenuDropdownComponent ]
+      declarations: [ MenuDropdownComponent ],
+      imports: [
+        MatMenuModule,
+        MatButtonModule,
+        MatGridListModule,
+        RouterTestingModule]
     })
     .compileComponents();
   }));

@@ -20,6 +20,18 @@ describe('QueryUtil', () => {
           'VALUES(0,"Testing",0);');
     });
 
+    it('insert with true bool', () => {
+      const obj = new TestModel(
+        0,
+        'Testing',
+        true,
+        ['Stuff', 'is', 'good']
+      );
+      expect(util.insert(obj))
+        .toBe('INSERT INTO test_table(id,name,isTrue) ' +
+          'VALUES(0,"Testing",1);');
+    });
+
     it('update', () => {
       const obj = new TestModel(
         0,
