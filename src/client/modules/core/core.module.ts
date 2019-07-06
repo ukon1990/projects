@@ -20,9 +20,9 @@ import { MenuDropdownComponent } from './components/header/menu/menu-dropdown/me
   imports: [
     CommonModule,
     MatMenuModule,
-    RouterModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    RouterModule
   ],
   exports: [
     HeaderComponent
