@@ -5,12 +5,14 @@ import {ProjectListComponent} from './modules/project/components/project-list/pr
 import {ProjectComponent} from './modules/project/components/project/project.component';
 import {TimesheetComponent} from './modules/timesheet/components/timesheet/timesheet.component';
 import {TimesheetEntryComponent} from './modules/timesheet/components/timesheet-entry/timesheet-entry.component';
+import {CreateProjectComponent} from './modules/project/components/create/create-project.component';
 
 
 const routes: Routes = [
   {
     path: 'projects', component: ProjectListComponent, children: [
-      {path: ':id', component: ProjectComponent}
+      {path: ':id', component: ProjectComponent},
+      {path: 'create', component: CreateProjectComponent}
     ]
   },
   {

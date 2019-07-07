@@ -8,6 +8,7 @@ import {CoreModule} from './modules/core/core.module';
 import {ProjectModule} from './modules/project/project.module';
 import {TimesheetModule} from './modules/timesheet/timesheet.module';
 import {UserModule} from './modules/user/user.module';
+import {MatGridListModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {UserModule} from './modules/user/user.module';
     CoreModule,
     ProjectModule,
     TimesheetModule,
-    UserModule
+    UserModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

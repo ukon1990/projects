@@ -1,0 +1,11 @@
+#main-content {
+  padding: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 600px) {
+  #main-content {
+    max-width: 80%;
+  }
+}
