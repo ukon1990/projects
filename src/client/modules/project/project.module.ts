@@ -4,9 +4,10 @@ import {ProjectListComponent} from './components/project-list/project-list.compo
 import {ProjectComponent} from './components/project/project.component';
 import {ProjectService} from './services/project.service';
 import {HttpClientModule} from '@angular/common/http';
-import {MatButtonModule, MatCardModule, MatListModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatInputModule, MatListModule} from '@angular/material';
 import {CreateProjectComponent} from './components/create/create-project.component';
 import {RouterModule} from '@angular/router';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import {RouterModule} from '@angular/router';
     MatListModule,
     MatCardModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [
     ProjectService
