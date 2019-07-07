@@ -10,9 +10,10 @@ import {CreateProjectComponent} from './modules/project/components/create/create
 
 const routes: Routes = [
   {
-    path: 'projects', component: ProjectListComponent, children: [
+    path: 'projects', children: [
+      {path: 'create', component: CreateProjectComponent},
       {path: ':id', component: ProjectComponent},
-      {path: 'create', component: CreateProjectComponent}
+      {path: '', component: ProjectListComponent},
     ]
   },
   {
