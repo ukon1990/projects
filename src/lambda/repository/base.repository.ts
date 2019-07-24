@@ -10,6 +10,7 @@ export abstract class BaseRepository<T> {
     this.connection = mysql.createConnection(DATABASE_CREDENTIALS);
   }
 
+  /* istanbul ignore next */
   query(query: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.connection.connect((error) => {
@@ -36,21 +37,27 @@ export abstract class BaseRepository<T> {
     });
   }
 
+  /* istanbul ignore next */
   insert(object: T): Promise<T> {
     const query = new QueryUtil(this.table).insert(object);
     return this.query(query);
   }
 
+  /* istanbul ignore next */
   update(id: number, object: T): Promise<T> {
     const query = new QueryUtil(this.table).update(id, object);
     return this.query(query);
   }
 
+  /* istanbul ignore next */
   abstract create(body: any): Promise<T>;
 
+  /* istanbul ignore next */
   abstract getAll(): Promise<T[]>;
 
+  /* istanbul ignore next */
   abstract getById(id: number): Promise<T>;
 
+  /* istanbul ignore next */
   abstract save(body: any): Promise<T>;
 }

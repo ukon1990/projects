@@ -4,13 +4,15 @@ export class User {
   id: number;
 
   constructor(
-    public username: string,
+    public displayName: string,
+    public firstName: string,
+    public lastName: string,
     public email: string,
     public password?: string
   ) {
   }
 
   getMinimal(): UserMinimal {
-    return new UserMinimal();
+    return new UserMinimal(this.id, this.displayName);
   }
 }
