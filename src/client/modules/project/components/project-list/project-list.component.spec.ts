@@ -4,7 +4,7 @@ import {ProjectListComponent} from './project-list.component';
 import {ProjectService} from '../../services/project.service';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {DebugElement} from '@angular/core';
-import {Project} from '../../../../../models/project.model';
+import {Project} from '../../models/project.model';
 import {MatButtonModule, MatCardModule, MatListModule} from '@angular/material';
 import {RouterTestingModule} from '@angular/router/testing';
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectService} from '../../services/project.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Project} from '../../../../../models/project.model';
+import {Project} from '../../models/project.model';
 import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Location} from '@angular/common';
