@@ -1,5 +1,5 @@
 import {BaseRepository} from './base.repository';
-import {Project} from '../../models/project.model';
+import {Project} from '../../client/modules/project/models/project.model';
 
 export class ProjectRepository extends BaseRepository<Project> {
   constructor() {

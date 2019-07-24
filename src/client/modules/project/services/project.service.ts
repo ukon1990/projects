@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Project} from '../../../../models/project.model';
+import {Project} from '../models/project.model';
 import {BASE_ENDPOINT} from '../../../endpoints';
 
 @Injectable({
