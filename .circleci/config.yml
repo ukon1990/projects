@@ -34,3 +34,5 @@ jobs:
 
       # run tests!
       - run: npm run test -- --watch=false --browsers ChromeHeadless --code-coverage
+      - run: npm run build -- --prod
+      - run: npm run lint
