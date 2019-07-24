@@ -16,7 +16,9 @@ export class ProjectService {
 
   /* istanbul ignore next */
   async getAll(): Promise<Project[]> {
-    return this.http.get(`${BASE_ENDPOINT}project`)
+    const url = `${BASE_ENDPOINT}project`;
+    console.log(url);
+    return this.http.get(url)
       .toPromise()
       .then((projects: Project[]) => {
         this.projects.next(projects);
@@ -24,13 +26,15 @@ export class ProjectService {
   }
 
   /* istanbul ignore next */
-  getById(id: number): Promise<Project[]> {
-    return this.http.get(`${BASE_ENDPOINT}project/${id}`).toPromise() as Promise<Project[]>;
+  getById(id: number): Promise<Project> {
+    return this.http.get(`${BASE_ENDPOINT}project/${id}`).toPromise() as Promise<Project>;
   }
 
   /* istanbul ignore next */
   create(project: Project): Promise<Project> {
-    return this.http.post(`${BASE_ENDPOINT}project`, project).toPromise() as Promise<Project>;
+    const url = `${BASE_ENDPOINT}project`;
+    console.log(project, url);
+    return this.http.post(url, project).toPromise() as Promise<Project>;
   }
 
   /* istanbul ignore next */

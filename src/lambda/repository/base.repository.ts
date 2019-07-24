@@ -7,11 +7,13 @@ export abstract class BaseRepository<T> {
   private connection: Connection;
 
   constructor(public table?: string) {
-    this.connection = mysql.createConnection(DATABASE_CREDENTIALS);
   }
 
   /* istanbul ignore next */
   query(query: string): Promise<any> {
+    this.connection = mysql.createConnection(DATABASE_CREDENTIALS);
+    console.log(query);
+
     return new Promise<any>((resolve, reject) => {
       this.connection.connect((error) => {
         if (error) {
