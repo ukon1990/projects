@@ -18,6 +18,7 @@ export class ProjectListComponent implements OnInit {
   }
 
   async ngOnInit() {
+    /* istanbul ignore next */
     if (!this.list.length) {
       await this.service.getAll();
     }
