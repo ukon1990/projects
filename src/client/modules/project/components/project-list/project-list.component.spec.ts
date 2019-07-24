@@ -64,4 +64,10 @@ describe('ProjectListComponent', () => {
       expect(noProjectsMessage).toBeFalsy();
     });
   });
+
+  describe('ts', () => {
+    describe('ngOnInit', () => {
+      it('')
+    });
+  });
 });
