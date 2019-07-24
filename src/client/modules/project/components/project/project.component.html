@@ -4,9 +4,17 @@
       {{project?.name}}
     </mat-card-title>
     <mat-card-subtitle>
-      {{project?.description}}
+      Created: {{ project?.created | date }}
+    </mat-card-subtitle>
+    <mat-card-subtitle>
+      Updated: {{ project?.updated | date }}
     </mat-card-subtitle>
   </mat-card-header>
+
+  <mat-card-content>
+    {{project?.description}}
+
+  </mat-card-content>
 
   <mat-card-actions>
     <button mat-raised-button>Update</button>

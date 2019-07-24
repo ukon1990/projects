@@ -23,6 +23,7 @@ export class CreateProjectComponent {
     });
   }
 
+  /* istanbul ignore next */
   create(): void {
     this.service.create(this.form.value as Project)
       .then((project: Project) =>
@@ -30,6 +31,7 @@ export class CreateProjectComponent {
       .catch(this.handleError);
   }
 
+  /* istanbul ignore next */
   handleError(error: HttpErrorResponse): void {
     console.error(error);
   }

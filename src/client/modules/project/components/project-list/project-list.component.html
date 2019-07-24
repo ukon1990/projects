@@ -2,7 +2,8 @@
   <mat-list>
     <mat-list-item *ngFor="let project of list"
                    [routerLink]="project.id">
-      <h3>{{ project.name }}</h3>
+      <h3 mat-line>{{ project.name }}</h3>
+      <p mat-line>Created: {{ project.created | date }}</p>
     </mat-list-item>
   </mat-list>
 </ng-container>

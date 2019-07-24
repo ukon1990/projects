@@ -62,6 +62,6 @@ export class QueryUtil<T> {
     if (value.getDate) {
       return +value;
     }
-    return JSON.stringify(value);
+    return `"${JSON.stringify(value)}"`;
   }
 }

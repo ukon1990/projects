@@ -11,6 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 export class ProjectComponent {
   project: Project;
 
+  /* istanbul ignore next */
   constructor(private service: ProjectService, private route: ActivatedRoute) {
     this.route.params.subscribe(params =>
       this.service.getById(params.id)
