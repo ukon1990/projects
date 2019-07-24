@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Project} from '../../models/project.model';
 import {ProjectService} from '../../services/project.service';
+import {SubscriptionManager} from '@ukon1990/subscription-manager/dist/subscription-manager';
 
 @Component({
   selector: 'p-project-list',
@@ -8,11 +9,18 @@ import {ProjectService} from '../../services/project.service';
 })
 export class ProjectListComponent implements OnInit {
   list: Project[] = [];
+  sm = new SubscriptionManager();
 
-  constructor(private service: ProjectService) { }
+  constructor(private service: ProjectService) {
+    this.sm.add(this.service.projects,
+      projects =>
+        this.list = projects);
+  }
 
   async ngOnInit() {
-    this.list = await this.service.getAll();
+    if (!this.list.length) {
+      await this.service.getAll();
+    }
   }
 
 }

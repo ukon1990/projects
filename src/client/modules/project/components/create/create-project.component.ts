@@ -17,15 +17,16 @@ export class CreateProjectComponent {
   constructor(private service: ProjectService, private formBuilder: FormBuilder, private router: Router, public location: Location) {
     this.form = this.formBuilder.group({
       parentId: new FormControl(),
-      name: new FormControl('', [Validators.required, Validators.maxLength(64)]),
-      description: new FormControl('')
+      name: new FormControl('', [Validators.required, Validators.maxLength(45)]),
+      description: new FormControl(''),
+      users: new FormControl([])
     });
   }
 
   create(): void {
     this.service.create(this.form.value as Project)
       .then((project: Project) =>
-        this.router.navigateByUrl(`/project/${project.id}`))
+        this.router.navigateByUrl(`/projects/${project.id}`))
       .catch(this.handleError);
   }
 
