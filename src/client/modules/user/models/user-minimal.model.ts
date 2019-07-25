@@ -1,6 +1,5 @@
 export class UserMinimal {
-  id?: number;
 
-  constructor(public userId: number, public name: string) {
+  constructor(public id: number, public name: string) {
   }
 }

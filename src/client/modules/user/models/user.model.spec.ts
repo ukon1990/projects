@@ -7,6 +7,7 @@ describe('UserModel', () => {
       user.id = 1;
       const minimalUser = user.getMinimal();
 
+      console.log(minimalUser, user);
       expect(minimalUser.id).toBe(user.id);
       expect(minimalUser.name).toBe(user.displayName);
     });
