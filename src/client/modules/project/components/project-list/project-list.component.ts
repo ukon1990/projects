@@ -12,7 +12,7 @@ export class ProjectListComponent implements OnInit {
   sm = new SubscriptionManager();
 
   constructor(private service: ProjectService) {
-    this.sm.add(this.service.projects,
+    this.sm.add(this.service.list,
       projects =>
         this.list = projects);
   }

@@ -78,9 +78,9 @@ describe('QueryUtil', () => {
       expect(util.update(obj.id, obj))
         .toBe('UPDATE test_table ' +
           'SET id = 0,' +
-          'SET name = "Testing",' +
-          'SET isTrue = 0,' +
-          'SET date = ' + +obj.date + ' ' +
+            'name = "Testing",' +
+            'isTrue = 0,' +
+            'date = ' + +obj.date + ' ' +
           'WHERE id = 0;');
     });
   });

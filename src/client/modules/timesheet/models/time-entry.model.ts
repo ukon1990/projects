@@ -6,6 +6,7 @@ export class TimeEntry {
   startTime: Date;
   endTime: Date;
   user: UserMinimal;
+  hourlyRate: number;
 
   constructor(public projectId: number, user: User) {
   }

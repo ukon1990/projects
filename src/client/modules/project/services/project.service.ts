@@ -4,43 +4,14 @@ import {Project} from '../models/project.model';
 import {BASE_ENDPOINT} from '../../../endpoints';
 import {BehaviorSubject} from 'rxjs';
 import {ObjectUtil} from '@ukon1990/js-utilities';
+import {BaseService} from '../../core/services/base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectService {
-  projects: BehaviorSubject<Project[]> = new BehaviorSubject([]);
+export class ProjectService extends BaseService<Project> {
 
-  constructor(private http: HttpClient) {
-  }
-
-  /* istanbul ignore next */
-  async getAll(): Promise<Project[]> {
-    const url = `${BASE_ENDPOINT}project`;
-    console.log(url);
-    return this.http.get(url)
-      .toPromise()
-      .then((projects: Project[]) => {
-        this.projects.next(projects);
-      }) as Promise<Project[]>;
-  }
-
-  /* istanbul ignore next */
-  getById(id: number): Promise<Project> {
-    return this.http.get(`${BASE_ENDPOINT}project/${id}`).toPromise() as Promise<Project>;
-  }
-
-  /* istanbul ignore next */
-  create(project: Project): Promise<Project> {
-    const url = `${BASE_ENDPOINT}project`;
-    console.log(project, url);
-    return this.http.post(url, project).toPromise() as Promise<Project>;
-  }
-
-  /* istanbul ignore next */
-  save(project: Project): Promise<Project> {
-    return this.http.patch(`${BASE_ENDPOINT}project`, project).toPromise()
-      .then((p: Project) =>
-        ObjectUtil.overwrite(p, project)) as Promise<Project>;
+  constructor(http: HttpClient) {
+    super(http, 'project');
   }
 }

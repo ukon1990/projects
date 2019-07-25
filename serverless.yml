@@ -37,3 +37,34 @@ functions:
       - http:
           method: get
           path: project/{id}
+
+  timeSheetGetAll:
+    handler: src/lambda/handlers/project.getAll
+    events:
+      - http:
+          method: get
+          path: timesheet
+  timeSheetGetWithProjectId:
+    handler: src/lambda/handlers/time-sheet.getWithProjectId
+    events:
+      - http:
+          method: get
+          path: timesheet/project/{id}
+  timeSheetGetWithId:
+    handler: src/lambda/handlers/time-sheet.getWithId
+    events:
+      - http:
+          method: get
+          path: timesheet/{id}
+  timeSheetCreate:
+    handler: src/lambda/handlers/time-sheet.create
+    events:
+        - http:
+            method: post
+            path: timesheet
+  timeSheetSave:
+    handler: src/lambda/handlers/time-sheet.save
+    events:
+      - http:
+          method: patch
+          path: timesheet

@@ -1,3 +1,8 @@
+<mat-action-list>
+  <button mat-raised-button routerLink="create">
+    Create project
+  </button>
+</mat-action-list>
 <ng-container *ngIf="list.length; else noProjectsTemplate">
   <mat-list>
     <mat-list-item *ngFor="let project of list"
@@ -15,10 +20,5 @@
         No projects available
       </mat-card-title>
     </mat-card-header>
-    <mat-card-actions>
-      <button mat-raised-button routerLink="create">
-        Create project
-      </button>
-    </mat-card-actions>
   </mat-card>
 </ng-template>

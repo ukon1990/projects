@@ -1,1 +1,19 @@
-<p>timesheet-entry works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Time elapsed: {{ elapsedTime }}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-actions>
+    <button mat-raised-button
+            (click)="startTimer()"
+            [disabled]="isTimerRunning()">Start</button>
+    <button mat-raised-button>Pause</button>
+    <button mat-raised-button>Break</button>
+    <button mat-raised-button
+            (click)="stopTimer()"
+            [disabled]="!isTimerRunning()">
+      Stop
+    </button>
+  </mat-card-actions>
+</mat-card>
