@@ -8,6 +8,7 @@ import {MatButtonModule, MatCardModule, MatInputModule, MatListModule} from '@an
 import {CreateProjectComponent} from './components/create/create-project.component';
 import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
+import {TimesheetModule} from '../timesheet/timesheet.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatButtonModule,
     RouterModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    TimesheetModule
   ],
   providers: [
     ProjectService

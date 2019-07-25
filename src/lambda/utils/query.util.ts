@@ -6,11 +6,11 @@ export class QueryUtil<T> {
 
   update(id: number, object: T): string {
     const cv = this.getColumnsAndValues(object);
-    let query = `UPDATE ${this.table} `;
+    let query = `UPDATE ${this.table} SET `;
 
     query += cv.columns
       .map((column, index) =>
-        `SET ${column} = ${cv.values[index]}`)
+        `${column} = ${cv.values[index]}`)
       .join(',');
 
     return `${query} WHERE id = ${id};`;
@@ -28,6 +28,7 @@ export class QueryUtil<T> {
     Object.keys(object)
       .forEach(k => {
         const value = this.getSQLFriendlyString(object[k]);
+        console.log('Value is', value);
         if (typeof value !== 'boolean') {
           columns.push(k);
           values.push(value);

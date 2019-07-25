@@ -7,6 +7,8 @@ import {DebugElement} from '@angular/core';
 import {Project} from '../../models/project.model';
 import {MatButtonModule, MatCardModule, MatListModule} from '@angular/material';
 import {RouterTestingModule} from '@angular/router/testing';
+import {ActivatedRoute} from '@angular/router';
+import {of} from 'rxjs';
 
 describe('ProjectListComponent', () => {
   let component: ProjectListComponent;
@@ -20,7 +22,15 @@ describe('ProjectListComponent', () => {
       imports: [
         HttpClientTestingModule, MatListModule, MatCardModule, MatButtonModule,
         RouterTestingModule],
-      providers: [ProjectService]
+      providers: [
+        ProjectService,
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({id: 123})
+          }
+        }
+      ]
     })
       .compileComponents();
   }));

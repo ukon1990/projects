@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectComponent } from './project.component';
-import {MatCardModule} from '@angular/material';
+import {MatButtonModule, MatCardModule} from '@angular/material';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {of} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
@@ -13,7 +13,7 @@ describe('ProjectComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProjectComponent ],
-      imports: [MatCardModule, HttpClientTestingModule],
+      imports: [MatButtonModule, MatCardModule, HttpClientTestingModule],
       providers: [
         {
           provide: ActivatedRoute,

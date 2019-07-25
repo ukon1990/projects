@@ -11,12 +11,12 @@
     </mat-card-subtitle>
   </mat-card-header>
 
+  <mat-card-actions>
+    <button mat-raised-button routerLink="/timesheet/{{ project?.id }}">Timesheet</button>
+  </mat-card-actions>
+
   <mat-card-content>
     {{project?.description}}
-
   </mat-card-content>
 
-  <mat-card-actions>
-    <button mat-raised-button>Update</button>
-  </mat-card-actions>
 </mat-card>

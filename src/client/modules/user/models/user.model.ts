@@ -2,6 +2,7 @@ import {UserMinimal} from './user-minimal.model';
 
 export class User {
   id: number;
+  hourlyRate: number;
 
   constructor(
     public displayName: string,

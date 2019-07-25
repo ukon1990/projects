@@ -1,1 +1,21 @@
-<p>timesheet works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Time sheet for: {{ project?.name }}
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p-timesheet-entry *ngIf="project && project.timeEntries"
+                       [projectId]="project.id"
+                       [entries]="project?.timeEntries">
+    </p-timesheet-entry>
+
+    <mat-list>
+      <mat-list-item *ngFor="let entry of project?.timeEntries">
+        <p mat-line>{{entry?.startTime | date}}</p>
+        <p mat-line>{{entry?.hourlyRate}}</p>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

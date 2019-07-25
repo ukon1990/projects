@@ -17,8 +17,9 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'timesheet', component: TimesheetComponent, children: [
-      {path: ':id', component: TimesheetEntryComponent}
+    path: 'timesheet', children: [
+      {path: 'entry/:id', component: TimesheetEntryComponent},
+      {path: ':id', component: TimesheetComponent}
     ]
   },
   {path: 'user', component: UserComponent}
