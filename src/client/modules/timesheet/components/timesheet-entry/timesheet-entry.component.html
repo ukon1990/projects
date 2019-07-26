@@ -4,12 +4,33 @@
       Time elapsed: {{ elapsedTime }}
     </mat-card-title>
   </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form">
+      <mat-form-field>
+        <input matInput
+               placeholder="Hourly rate"
+               formControlName="hourlyRate"
+               type="number">
+      </mat-form-field>
+
+      <mat-form-field id="comment">
+      <textarea placeholder="Comment" matInput
+                formControlName="comment">
+      </textarea>
+      </mat-form-field>
+    </form>
+
+    <p *ngIf="currentEntry.hourlyRate">
+      Cost thus far: {{ accumulatedRate }}
+    </p>
+  </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button
             (click)="startTimer()"
-            [disabled]="isTimerRunning()">Start</button>
+            [disabled]="isTimerRunning()">
+      Start
+    </button>
     <button mat-raised-button>Pause</button>
-    <button mat-raised-button>Break</button>
     <button mat-raised-button
             (click)="stopTimer()"
             [disabled]="!isTimerRunning()">

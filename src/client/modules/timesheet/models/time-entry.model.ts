@@ -5,6 +5,7 @@ export class TimeEntry {
   id?: number;
   startTime: Date;
   endTime: Date;
+  comment?: string;
   user: UserMinimal;
   hourlyRate: number;
 

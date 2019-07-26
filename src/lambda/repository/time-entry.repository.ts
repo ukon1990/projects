@@ -23,21 +23,24 @@ export class TimeEntryRepository extends BaseRepository<TimeEntry> {
   /* istanbul ignore next */
   getAll(): Promise<TimeEntry[]> {
     return this.query(`SELECT *
-                              FROM ${this.table};`);
+                              FROM ${this.table}
+                              ORDER BY startTime DESC;`);
   }
 
   /* istanbul ignore next */
   getAllForProject(id: number): Promise<TimeEntry[]> {
     return this.query(`SELECT *
                               FROM ${this.table}
-                              WHERE projectId = ${id};`);
+                              WHERE projectId = ${id}
+                              ORDER BY startTime DESC;`);
   }
 
   /* istanbul ignore next */
   getAllForUser(id: number): Promise<TimeEntry[]> {
     return this.query(`SELECT *
                               FROM ${this.table}
-                              WHERE projectId = ${id};`);
+                              WHERE projectId = ${id}
+                              ORDER BY startTime DESC;`);
   }
 
   /* istanbul ignore next */
@@ -50,13 +53,18 @@ export class TimeEntryRepository extends BaseRepository<TimeEntry> {
 
   /* istanbul ignore next */
   async save(entry: TimeEntry): Promise<TimeEntry> {
-    entry.startTime = new Date(entry.startTime);
-    entry.endTime = new Date();
+    const saveData: TimeEntry = ObjectUtil.clone(entry) as TimeEntry;
+    saveData.startTime = new Date(entry.startTime);
+    if (!EmptyUtil.isNullOrUndefined(entry.endTime)) {
+      saveData.endTime = new Date();
+    }
+
     if (EmptyUtil.isNullOrUndefined(entry.hourlyRate)) {
+      saveData.hourlyRate = 0;
       entry.hourlyRate = 0;
     }
 
-    await this.update(entry.id, entry);
+    await this.update(saveData.id, saveData);
     return entry;
   }
 }

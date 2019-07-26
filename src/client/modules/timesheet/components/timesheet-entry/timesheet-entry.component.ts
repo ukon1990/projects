@@ -1,8 +1,9 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {TimeEntry} from '../../models/time-entry.model';
-import {Observable} from 'rxjs';
-import {DateUtil, ObjectUtil} from '@ukon1990/js-utilities';
+import {DateUtil} from '@ukon1990/js-utilities';
 import {TimesheetService} from '../../timesheet.service';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {SubscriptionManager} from '@ukon1990/subscription-manager/dist/subscription-manager';
 
 @Component({
   selector: 'p-timesheet-entry',
@@ -16,19 +17,37 @@ export class TimesheetEntryComponent implements OnInit, OnDestroy {
   elapsedTime = '0h 0m';
   elapsedTimeInterval;
   hasCheckedEntries: boolean;
+  form: FormGroup;
+  formChangeTimer = {
+    comment: +new Date(),
+    hourlyRate: +new Date()
+  };
 
-  constructor(private service: TimesheetService) {
+  sm = new SubscriptionManager();
+  accumulatedRate: number;
+
+  constructor(private service: TimesheetService, private fb: FormBuilder) {
+    this.form = this.fb.group({
+      startTime: new FormControl(),
+      endTime: new FormControl(),
+      comment: new FormControl({value: '', disabled: true}),
+      hourlyRate: new FormControl({value: 0, disabled: true})
+    });
+
+    this.setSubscriptions();
+
     this.elapsedTimeInterval = setInterval(() =>
         this.setElapsedTime(),
       1000);
   }
 
   ngOnInit() {
-    this.currentEntry = new TimeEntry(this.projectId, undefined);
+    this.setNewTimeEntry();
   }
 
   ngOnDestroy(): void {
     clearInterval(this.elapsedTimeInterval);
+    this.sm.unsubscribe();
   }
 
   async startTimer(): Promise<void> {
@@ -38,35 +57,70 @@ export class TimesheetEntryComponent implements OnInit, OnDestroy {
         .then((entry: TimeEntry) =>
           this.currentEntry = entry);
       this.entries.push(this.currentEntry);
+      this.form.enable();
     }
   }
 
   async stopTimer(): Promise<void> {
     if (!this.currentEntry.endTime) {
       this.currentEntry.endTime = new Date();
+      this.form.controls.comment.disable();
       await this.service.save(this.currentEntry)
         .then((entry: TimeEntry) =>
-          ObjectUtil.overwrite(entry, this.currentEntry));
+          this.currentEntry.endTime = entry.endTime);
+      this.setNewTimeEntry();
     }
   }
 
   private setElapsedTime() {
-
     if (!this.hasCheckedEntries && this.entries) {
       this.entries.forEach(entry => {
-        if (entry.startTime && !entry.endTime) {
+        if (entry && entry.startTime && !entry.endTime) {
           // TODO: && Is the same user
           this.currentEntry = entry;
+          Object.keys(this.form.controls)
+            .forEach(key =>
+              this.form.controls[key].setValue(entry[key]));
+          this.form.enable();
         }
       });
       this.hasCheckedEntries = true;
     } else if (this.currentEntry && this.currentEntry.startTime) {
       const minutes = DateUtil.timeSince(this.currentEntry.startTime, 'm');
       this.elapsedTime = `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
+
+      this.accumulatedRate = minutes / 60 * this.currentEntry.hourlyRate;
     }
   }
 
   isTimerRunning() {
     return this.currentEntry && this.currentEntry.startTime !== undefined;
+  }
+
+  private setNewTimeEntry() {
+    this.currentEntry = new TimeEntry(this.projectId, undefined);
+  }
+
+  private setSubscriptions() {
+    this.sm.add(
+      this.form.controls.comment.valueChanges,
+      value => this.handleManuallyTypedChange(value, 'comment', this.formChangeTimer.comment)
+    );
+    this.sm.add(
+      this.form.controls.hourlyRate.valueChanges,
+      value => this.handleManuallyTypedChange(value, 'hourlyRate', this.formChangeTimer.hourlyRate)
+    );
+  }
+
+  private handleManuallyTypedChange(value, field: string, changeTimer: number) {
+    if (this.isTimerRunning() && this.currentEntry) {
+      this.currentEntry[field] = value;
+      this.formChangeTimer[field] = +new Date();
+      setTimeout(() => {
+        if (DateUtil.timeSince(changeTimer, 's') >= 1) {
+          this.service.save(this.currentEntry);
+        }
+      }, 1000);
+    }
   }
 }
