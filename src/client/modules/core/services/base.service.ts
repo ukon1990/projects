@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BASE_ENDPOINT} from '../../../endpoints';
 import {BehaviorSubject} from 'rxjs';
-import {ObjectUtil} from '@ukon1990/js-utilities';
+import {EmptyUtil, ObjectUtil} from '@ukon1990/js-utilities';
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +38,15 @@ export class BaseService<T> {
 
   /* istanbul ignore next */
   save(data: T): Promise<T> {
+    if (EmptyUtil.isNullOrUndefined(data)) {
+      return;
+    }
     return this.h.patch(`${BASE_ENDPOINT}${this.rootPath}`, data).toPromise()
-      .then((d: T) =>
-        ObjectUtil.overwrite(d, data)) as Promise<T>;
+      .then((d: T) => {
+        if (!EmptyUtil.isNullOrUndefined(d)) {
+          return ObjectUtil.overwrite(d, data);
+        }
+        return;
+      }) as Promise<T>;
   }
 }

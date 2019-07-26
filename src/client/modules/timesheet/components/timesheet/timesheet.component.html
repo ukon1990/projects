@@ -13,8 +13,10 @@
 
     <mat-list>
       <mat-list-item *ngFor="let entry of project?.timeEntries">
-        <p mat-line>{{entry?.startTime | date}}</p>
-        <p mat-line>{{entry?.hourlyRate}}</p>
+        <p mat-line>Start time: {{entry?.startTime | date: 'HH:mm dd/MM-yyyy'}}</p>
+        <p *ngIf="entry?.hourlyRate" mat-line>Hourly rate: {{entry?.hourlyRate}}</p>
+        <p mat-line>End time:{{entry?.endTime | date: 'HH:mm dd/MM-yyyy'}}</p>
+        <p mat-line>Comment: {{ entry?.comment }}</p>
       </mat-list-item>
     </mat-list>
   </mat-card-content>
