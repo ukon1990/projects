@@ -21,6 +21,7 @@ export class BaseService<T> {
       .toPromise()
       .then((data: T[]) => {
         this.list.next(data);
+        return data;
       }) as Promise<T[]>;
   }
 
@@ -46,7 +47,7 @@ export class BaseService<T> {
         if (!EmptyUtil.isNullOrUndefined(d)) {
           return ObjectUtil.overwrite(d, data);
         }
-        return;
+        return d;
       }) as Promise<T>;
   }
 }

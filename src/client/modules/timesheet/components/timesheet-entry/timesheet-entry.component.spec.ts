@@ -1,6 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TimesheetEntryComponent } from './timesheet-entry.component';
+import {TimesheetEntryComponent} from './timesheet-entry.component';
+import {MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('TimesheetEntryComponent', () => {
   let component: TimesheetEntryComponent;
@@ -8,9 +12,16 @@ describe('TimesheetEntryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimesheetEntryComponent ]
+      declarations: [TimesheetEntryComponent],
+      imports: [
+        MatCardModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        HttpClientTestingModule,
+        MatInputModule,
+        BrowserAnimationsModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,4 +33,10 @@ describe('TimesheetEntryComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('startTimer', async () => {
+    it('can start when currentEntry is not set', () => {});
+  });
+
+  describe('stopTimer', () => {});
 });

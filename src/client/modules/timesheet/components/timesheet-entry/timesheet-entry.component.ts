@@ -26,6 +26,7 @@ export class TimesheetEntryComponent implements OnInit, OnDestroy {
   sm = new SubscriptionManager();
   accumulatedRate: number;
 
+  /* istanbul ignore next */
   constructor(private service: TimesheetService, private fb: FormBuilder) {
     this.form = this.fb.group({
       startTime: new FormControl(),
@@ -93,14 +94,17 @@ export class TimesheetEntryComponent implements OnInit, OnDestroy {
     }
   }
 
+  /* istanbul ignore next */
   isTimerRunning() {
     return this.currentEntry && this.currentEntry.startTime !== undefined;
   }
 
+  /* istanbul ignore next */
   private setNewTimeEntry() {
     this.currentEntry = new TimeEntry(this.projectId, undefined);
   }
 
+  /* istanbul ignore next */
   private setSubscriptions() {
     this.sm.add(
       this.form.controls.comment.valueChanges,
