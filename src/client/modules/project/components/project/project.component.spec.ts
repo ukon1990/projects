@@ -5,6 +5,7 @@ import {MatButtonModule, MatCardModule} from '@angular/material';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {of} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('ProjectComponent', () => {
   let component: ProjectComponent;
@@ -13,7 +14,7 @@ describe('ProjectComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProjectComponent ],
-      imports: [MatButtonModule, MatCardModule, HttpClientTestingModule],
+      imports: [MatButtonModule, MatCardModule, HttpClientTestingModule, RouterTestingModule],
       providers: [
         {
           provide: ActivatedRoute,
