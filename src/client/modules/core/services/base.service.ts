@@ -4,9 +4,6 @@ import {BASE_ENDPOINT} from '../../../endpoints';
 import {BehaviorSubject} from 'rxjs';
 import {EmptyUtil, ObjectUtil} from '@ukon1990/js-utilities';
 
-@Injectable({
-  providedIn: 'root'
-})
 export class BaseService<T> {
   list: BehaviorSubject<T[]> = new BehaviorSubject([]);
 
