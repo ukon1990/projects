@@ -19,7 +19,9 @@ export class CreateProjectComponent {
       parentId: new FormControl(),
       name: new FormControl('', [Validators.required, Validators.maxLength(45)]),
       description: new FormControl(''),
-      users: new FormControl([])
+      users: new FormControl([]),
+      defaultHourlyRate: new FormControl(0),
+      customers: new FormControl([])
     });
   }
 

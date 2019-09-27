@@ -5,13 +5,21 @@
         <input matInput
                placeholder="Project name"
                formControlName="name"
-                maxlength="45">
+               maxlength="45">
         <mat-hint align="end">{{form.controls.name.value?.length}} / 64</mat-hint>
       </mat-form-field>
+
+      <mat-form-field>
+        <input matInput
+               placeholder="Default hourly rate"
+               type="number"
+               formControlName="defaultHourlyRate"/>
+      </mat-form-field>
+
       <mat-form-field>
         <textarea matInput matTextareaAutosize
-               placeholder="Project description"
-               formControlName="description">
+                  placeholder="Project description"
+                  formControlName="description">
         </textarea>
       </mat-form-field>
     </form>
@@ -30,5 +38,5 @@
 </mat-card>
 
 {{
-  form.getRawValue() | json
+form.getRawValue() | json
 }}
