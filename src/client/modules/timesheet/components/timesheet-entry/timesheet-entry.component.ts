@@ -12,7 +12,7 @@ import {SubscriptionManager} from '@ukon1990/subscription-manager/dist/subscript
 })
 export class TimesheetEntryComponent implements OnInit, OnDestroy {
   @Input() projectId: number;
-  @Input() entries: TimeEntry[];
+  @Input() entries: TimeEntry[] = [];
   currentEntry: TimeEntry;
   elapsedTime = '0h 0m';
   elapsedTimeInterval;
@@ -34,6 +34,7 @@ export class TimesheetEntryComponent implements OnInit, OnDestroy {
       comment: new FormControl({value: '', disabled: true}),
       hourlyRate: new FormControl({value: 0, disabled: true})
     });
+    this.form.disable();
 
     this.setSubscriptions();
 
@@ -54,10 +55,12 @@ export class TimesheetEntryComponent implements OnInit, OnDestroy {
   async startTimer(): Promise<void> {
     if (!this.currentEntry.startTime) {
       this.currentEntry.startTime = new Date();
+      /* istanbul ignore next */
       await this.service.create(this.currentEntry)
         .then((entry: TimeEntry) =>
           this.currentEntry = entry);
       this.entries.push(this.currentEntry);
+      console.log();
       this.form.enable();
     }
   }
