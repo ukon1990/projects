@@ -9,6 +9,9 @@
     <mat-card-subtitle>
       Updated: {{ project?.updated | date }}
     </mat-card-subtitle>
+    <mat-card-subtitle>
+      Default rate: {{ project?.defaultHourlyRate | currency:'kr' }}
+    </mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-actions>
