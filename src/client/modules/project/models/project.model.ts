@@ -1,5 +1,6 @@
 import {TimeEntry} from '../../timesheet/models/time-entry.model';
 import {User} from '../../user/models/user.model';
+import {Customer} from '../../customer/models/customer.model';
 
 export class Project {
   id?: number;
@@ -7,7 +8,9 @@ export class Project {
   created: Date;
   updated: Date;
   timeEntries: TimeEntry[] = [];
-  users?: User;
+  defaultHourlyRate: number;
+  customers: Customer[] = [];
+  users?: User[];
 
   constructor(public name: string, public description?: string) {
   }
