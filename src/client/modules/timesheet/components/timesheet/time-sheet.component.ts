@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Project} from '../../../project/models/project.model';
 import {ProjectService} from '../../../project/services/project.service';
-import {TimesheetService} from '../../timesheet.service';
+import {TimeSheetService} from '../../services/time-sheet.service';
 
 @Component({
-  selector: 'p-timesheet',
-  templateUrl: './timesheet.component.html',
-  styleUrls: ['./timesheet.component.scss']
+  selector: 'p-time-sheet',
+  templateUrl: './time-sheet.component.html',
+  styleUrls: ['./time-sheet.component.scss']
 })
-export class TimesheetComponent implements OnInit {
+export class TimeSheetComponent implements OnInit {
   project: Project;
 
   /* istanbul ignore next */
-  constructor(private route: ActivatedRoute, private projectService: ProjectService, private service: TimesheetService) {
+  constructor(private route: ActivatedRoute, private projectService: ProjectService, private service: TimeSheetService) {
     this.route.params
       .subscribe(async p => {
         Promise.all([

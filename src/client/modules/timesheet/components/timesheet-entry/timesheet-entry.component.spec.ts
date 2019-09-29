@@ -5,7 +5,9 @@ import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {TimesheetService} from '../../timesheet.service';
+import {TimeSheetService} from '../../services/time-sheet.service';
+import {TimeEntry} from '../../models/time-entry.model';
+import {User} from '../../../user/models/user.model';
 /*
 class MockService {
   constructor(){}
@@ -29,7 +31,7 @@ describe('TimesheetEntryComponent', () => {
         MatInputModule,
         BrowserAnimationsModule
       ], providers: [
-        // SpyHelper.provideMagicalMock(TimesheetService)
+        // SpyHelper.provideMagicalMock(TimeSheetService)
       ]
     })
       .compileComponents();
@@ -47,15 +49,32 @@ describe('TimesheetEntryComponent', () => {
     expect(component.form.enabled).toBeFalsy();
   });
 
-  describe('startTimer', async () => {
-    it('can start when currentEntry is not set', () => {
+  describe('startTimer', () => {
+    it('can start when currentEntry is not set', async (done) => {
       component.entries = [];
-      component.startTimer();
-      expect(component.currentEntry.startTime).toBeTruthy();
-      expect(component.entries.length).toBe(1);
-      expect(component.form.enabled).toBeTruthy();
+      await component.startTimer().finally(() => {
+        expect(component.currentEntry.startTime).toBeTruthy();
+        expect(component.entries.length).toBe(1);
+        expect(component.form.enabled).toBeTruthy();
+        done();
+      });
+    });
+
+    it('If a timer is already started, it should not start a new one', async (done) => {
+      const originalTime = new Date();
+      component.currentEntry = new TimeEntry(
+        -1, new User(null, null, null, null, null));
+      component.currentEntry.startTime = originalTime;
+      component.entries = [];
+      await component.startTimer()
+        .finally(() => {
+          expect(component.currentEntry.startTime).toBe(originalTime);
+          expect (component.entries.length).toBe(0);
+          done();
+        });
     });
   });
 
-  describe('stopTimer', () => {});
+  describe('stopTimer', () => {
+  });
 });

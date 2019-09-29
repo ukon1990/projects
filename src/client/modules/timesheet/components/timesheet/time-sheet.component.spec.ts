@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {TimesheetComponent} from './timesheet.component';
+import {TimeSheetComponent} from './time-sheet.component';
 import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatListModule} from '@angular/material';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {TimesheetEntryComponent} from '../timesheet-entry/timesheet-entry.component';
@@ -9,12 +9,12 @@ import {ActivatedRoute} from '@angular/router';
 import {of} from 'rxjs';
 
 describe('TimesheetComponent', () => {
-  let component: TimesheetComponent;
-  let fixture: ComponentFixture<TimesheetComponent>;
+  let component: TimeSheetComponent;
+  let fixture: ComponentFixture<TimeSheetComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TimesheetComponent, TimesheetEntryComponent],
+      declarations: [TimeSheetComponent, TimesheetEntryComponent],
       imports: [
         MatCardModule,
         MatButtonModule,
@@ -37,7 +37,7 @@ describe('TimesheetComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TimesheetComponent);
+    fixture = TestBed.createComponent(TimeSheetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

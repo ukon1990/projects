@@ -1,7 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {TimeEntry} from '../../models/time-entry.model';
 import {DateUtil} from '@ukon1990/js-utilities';
-import {TimesheetService} from '../../timesheet.service';
+import {TimeSheetService} from '../../services/time-sheet.service';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {SubscriptionManager} from '@ukon1990/subscription-manager/dist/subscription-manager';
 
@@ -27,7 +27,7 @@ export class TimesheetEntryComponent implements OnInit, OnDestroy {
   accumulatedRate: number;
 
   /* istanbul ignore next */
-  constructor(private service: TimesheetService, private fb: FormBuilder) {
+  constructor(private service: TimeSheetService, private fb: FormBuilder) {
     this.form = this.fb.group({
       startTime: new FormControl(),
       endTime: new FormControl(),
@@ -60,7 +60,6 @@ export class TimesheetEntryComponent implements OnInit, OnDestroy {
         .then((entry: TimeEntry) =>
           this.currentEntry = entry);
       this.entries.push(this.currentEntry);
-      console.log();
       this.form.enable();
     }
   }

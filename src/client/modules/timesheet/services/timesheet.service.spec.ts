@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 
-import {TimesheetService} from './timesheet.service';
+import {TimeSheetService} from './time-sheet.service';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('TimesheetService', () => {
@@ -11,7 +11,7 @@ describe('TimesheetService', () => {
   }));
 
   it('should be created', () => {
-    const service: TimesheetService = TestBed.get(TimesheetService);
+    const service: TimeSheetService = TestBed.get(TimeSheetService);
     expect(service).toBeTruthy();
   });
 });
