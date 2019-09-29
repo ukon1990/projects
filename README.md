@@ -4,7 +4,8 @@ Completing the project is not the purpose of this project. But instead, a bonus 
 
 ## Then what is the purpose?
 The purpose of this project is to get more familiar with testing in JavaScript/TypeScript.
-Also, to avoid multiple node_module directories, both the front- and backend, use the same package.json.
+Also, to avoid multiple node_module directories, both
+ the front- and backend, use the same package.json.
 
 ## Testing
 The aim is to have at least 80% test coverage, in the front- and backend combined.
@@ -20,4 +21,5 @@ Both the use the setup provided for testing in Angular, for the sake of making t
 
 ## Documentation index
 - [How to set up the project](doc/project-setup.md)
+- [Requirement spesification](doc/requirements-for-a-completed-project.md)
 - Soon™

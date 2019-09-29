@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BASE_ENDPOINT} from '../../endpoints';
-import {TimeEntry} from './models/time-entry.model';
-import {BaseService} from '../core/services/base.service';
+import {BASE_ENDPOINT} from '../../../endpoints';
+import {TimeEntry} from '../models/time-entry.model';
+import {BaseService} from '../../core/services/base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TimesheetService extends BaseService<TimeEntry> {
+export class TimeSheetService extends BaseService<TimeEntry> {
 
   constructor(private http: HttpClient) {
     super(http, 'timesheet');

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TimesheetComponent } from './components/timesheet/timesheet.component';
+import { TimeSheetComponent } from './components/timesheet/time-sheet.component';
 import { TimesheetEntryComponent } from './components/timesheet-entry/timesheet-entry.component';
 import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatListModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -8,7 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [TimesheetComponent, TimesheetEntryComponent],
+  declarations: [TimeSheetComponent, TimesheetEntryComponent],
   exports: [
     TimesheetEntryComponent
   ],
