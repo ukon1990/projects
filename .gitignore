@@ -46,4 +46,4 @@ testem.log
 .DS_Store
 Thumbs.db
 
-src/lambda/credentials\.ts
+src/lambda/credentials.ts
