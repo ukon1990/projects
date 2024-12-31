@@ -1,0 +1,36 @@
+service: kotlin-service
+
+provider:
+  name: aws
+  runtime: java11
+  memorySize: 512
+  timeout: 30
+  region: eu-west-1
+
+plugins:
+  - serverless-offline
+
+package:
+  artifact: build/libs/app.jar
+
+functions:
+  getProjects:
+    handler: net.jonaskf.handlers.ProjectHandler::getProjects
+    events:
+      - http:
+          path: projects
+          method: get
+
+  getTasks:
+    handler: net.jonaskf.handlers.TaskHandler::getTasks
+    events:
+      - http:
+          path: tasks
+          method: get
+
+  getUsers:
+    handler: net.jonaskf.handlers.UserHandler::getUsers
+    events:
+      - http:
+          path: users
+          method: get

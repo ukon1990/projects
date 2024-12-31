@@ -4,9 +4,6 @@
 /dist
 /tmp
 /out-tsc
-# Only exists if Bazel was run
-/bazel-out
-.webpack
 
 # dependencies
 /node_modules
@@ -46,4 +43,23 @@ testem.log
 .DS_Store
 Thumbs.db
 
-src/lambda/credentials.ts
+# Gradle and Kotlin
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+*.class
+*.jar
+*.war
+*.ear
+*.kotlin_module
+
+# AWS and Serverless
+.aws-sam/
+.serverless/
+
+# Logs
+*.log
+
+# Environment Files
+.env
+.env.*
